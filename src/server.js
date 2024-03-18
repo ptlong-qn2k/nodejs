@@ -1,11 +1,14 @@
-import Express  from 'express'
-const path =require('path')
-const express = require('express')
+import express  from 'express'
+import configViewEngine from './configs/viewsEngine'
+require('dotenv').config();
+
 const app = express()
-const port = 3000
+const port = process.env.PORT || 8080;
+
+configViewEngine(app)
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,'/index.html'))
+  res.render("index.ejs")
 })
 app.get('/about',(req,res)=>{
   res.send(`I'm thanh long`)
